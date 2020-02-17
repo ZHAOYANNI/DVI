@@ -20,6 +20,7 @@
 |3|![Bomba](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/superbomb-sheet0.png)|despejar los submarinos y las minas|
 
 - Ajustes
+
 |#|images|función|
 |---|---|----|
 |1|![Suspender](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/btnpause-sheet0.png)![Comenzar](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/btnpause-sheet1.png)|pausa o comienza el juego|
