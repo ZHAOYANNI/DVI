@@ -24,5 +24,5 @@
 |#|images|función|
 |---|---|----|
 |1|![Suspender](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/btnpause-sheet0.png)![Comenzar](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/btnpause-sheet1.png)|pausa o comienza el juego|
-|2|![Apagar sonido](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/btnsound1-sheet0.png)![Encendar sonido](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/btnsound1-sheet0.png)|sonido encendido o apagado|
+|2|![Apagar sonido](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/btnsound-sheet1.png)![Encendar sonido](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/btnsound-sheet2.png)|sonido encendido o apagado|
 |3|![Jugar](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/btnplay-sheet0.png)|Iniciar juego|
