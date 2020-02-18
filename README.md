@@ -5,6 +5,11 @@ Desarrollo de Videojuegos mediante Tecnologías Web
 * Zhaoyan Ni [luojuee](https://github.com/luojuee)
 * Yifei Liu [ZHAOYANNI](https://github.com/ZHAOYANNI)
 
+## Description
+```
+
+```
+
 ## Practicas
 * Hito 1
 ```
