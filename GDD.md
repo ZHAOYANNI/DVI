@@ -7,12 +7,11 @@ Al comer bancos de peces, conseguirá puntos, pero ¡cuidado! hay peces venenoso
 También aparecerán submarinos y bombas en el océano, son una amenaza para los jugadores.  
 ```
 ## Ficha del juego
-  Nombre del juego: `UNDERWATER CRISIS`
-  Pantalla: `horizontal`
-  Tipo del juego: `2D` `juego casual`
-  Plataforma: `Página Web`
-  Recomendado para jugadores mayores de `6` años
-
+  Nombre del juego: `UNDERWATER CRISIS`  
+  Pantalla: `horizontal`  
+  Tipo del juego: `2D` `juego casual`  
+  Plataforma: `Página Web`  
+  Recomendado para jugadores mayores de `6` años  
 
 ## Estética/Mecánica
 - Sistema de puntos
