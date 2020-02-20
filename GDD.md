@@ -1,3 +1,19 @@
+# UNDERWATER CRISIS
+```
+Es un juego inspirado en el juego "Feeding".  
+  
+UNDERWATER CRISIS es un juego en el que los jugadores desempeñan el papel de tiburón.  
+Al comer bancos de peces, conseguirá puntos, pero ¡cuidado! hay peces venenosos.  
+También aparecerán submarinos y bombas en el océano, son una amenaza para los jugadores.  
+```
+## Ficha del juego
+Nombre del juego: `UNDERWATER CRISIS`
+Pantalla: `horizontal`
+Tipo del juego: `2D` `juego casual`
+Plataforma: `Página Web`
+Recomendado para jugadores mayores de `6` años
+
+
 ## Estética/Mecánica
 - Sistema de puntos
 
