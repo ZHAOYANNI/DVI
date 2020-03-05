@@ -1,5 +1,6 @@
 # DVI
 Desarrollo de Videojuegos mediante Tecnologías Web
+npx http-server
 
 ## Autores
 * Zhaoyan Ni [luojuee](https://github.com/luojuee)
