@@ -28,7 +28,15 @@
                 autoCenter: Phaser.Scale.CENTER_BOTH
             },
             scene: [ Game ],
-            physics: { default: 'arcade', arcade: { gravity: { y: 400 }, debug: false } }
+            physics: { 
+                default: 'arcade', 
+                arcade: { 
+                    gravity: { 
+                       // y: 400 
+                    }, 
+                    debug: false 
+                }
+            }
         };
         new Phaser.Game(config);
     </script>
