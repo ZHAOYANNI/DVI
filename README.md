@@ -16,13 +16,13 @@ npx http-server
 
 ## Practicas
 * Hito 1
-```
+
   - [x] Limite: 27/02/2020
-```
+
 * Hito 2
-```
+
   ~~Limite: 30/3/2020~~ Cese por actividades por Covid-19
-```
+
 * Hito 3
 ```
   > Limite: 25/05/2020
