@@ -1,17 +1,20 @@
+import Player from './player.js';
+
 export default class Game extends Phaser.Scene {
   constructor() {
     super({ key: 'main' });
   }
   preload() {  
   	this.load.image('background', 'assets/images/background.png');
-    this.load.image('shark', 'assets/images/sharkpower-sheet0.png');
+    //this.load.image('player', 'assets/images/shark-sheet0.png');
     this.load.image('life', 'assets/images/guilife-sheet0.png');
     this.load.image('score', 'assets/images/guiscore-sheet0.png');
     this.load.image('bullet', 'assets/images/guitime-sheet0.png');
     this.load.image('pause', 'assets/images/btnpause-sheet0.png');
     this.load.image('sound', 'assets/images/btnsound-sheet1.png');
     //this.load.spritesheet('shark', 'assets/images/shark-sheet0.png',);
-    
+    //this.load.audio('audio-bounce', ['audio/bounce.ogg', 'audio/bounce.mp3', 'audio/bounce.m4a']);
+    this.load.spritesheet('player', 'assets/images/shark-sheet0.png', {frameWidth: 128,frameHeight: 103});
   }
 
   create() {
@@ -21,40 +24,17 @@ export default class Game extends Phaser.Scene {
     this.add.image(900, 100, 'bullet');
     this.add.image(1600, 100, 'pause');
     this.add.image(1800, 100, 'sound');
-    // movimiento de jugador
-    this.shark = this.physics.add.image(300, 640, 'shark');
-    this.input.keyboard.on("keydown_D", () => {
-      this.shark.setVelocity(100,0);
-    });
-    this.input.keyboard.on("keyup_D", () => {
-      this.shark.setVelocity(0,0);
-    });
-    this.input.keyboard.on("keydown_A", () => {
-      this.shark.setVelocity(-100,0);
-    });
-    this.input.keyboard.on("keyup_A", () => {
-      this.shark.setVelocity(0,0);
-    });
-    this.input.keyboard.on("keydown_W", () => {
-      this.shark.setVelocity(0,-100);
-    });
-    this.input.keyboard.on("keyup_W", () => {
-      this.shark.setVelocity(0,0);
-    });
-    this.input.keyboard.on("keydown_S", () => {
-      this.shark.setVelocity(0,100);
-    });
-    this.input.keyboard.on("keyup_S", () => {
-      this.shark.setVelocity(0,0);
-    });
     
-    /*this.anims.create({
+    this.player = new Player(this, 300, 640);
+
+    this.anims.create({
       key: 'player_normal',
-      frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 7 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 0, end: 6 }),
       frameRate: 10,
       repeat: -1
     });
-    this.anims.create({
+    
+    /*this.anims.create({
       key: 'player_attack',
       frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 7 }),
       frameRate: 10,
