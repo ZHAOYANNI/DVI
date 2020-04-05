@@ -7,6 +7,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
+    this,scene.sys.displayList.add(this);
+    this.scene.sys.updateList.add(this);
+    this.scene.sys.arcadePhysics.world.enableBody(this, 0);
     this.body.setCollideWorldBounds(true);
 
     //this.cursors = this.scene.input.keyboard.createCursorKeys();
@@ -41,29 +44,31 @@ export default class Player extends Phaser.GameObjects.Sprite {
     // movimiento de jugador
     this.scene.input.keyboard.on("keydown_D", () => {
       this.body.setVelocity(100,0);
+      this.scene.anims.play('player_normal',true);
     });
     this.scene.input.keyboard.on("keyup_D", () => {
       this.body.setVelocity(0,0);
     });
     this.scene.input.keyboard.on("keydown_A", () => {
       this.body.setVelocity(-100,0);
+      this.scene.anims.play('player_normal',true);
     });
     this.scene.input.keyboard.on("keyup_A", () => {
       this.body.setVelocity(0,0);
     });
     this.scene.input.keyboard.on("keydown_W", () => {
       this.body.setVelocity(0,-100);
+      this.scene.anims.play('player_normal',true);
     });
     this.scene.input.keyboard.on("keyup_W", () => {
       this.body.setVelocity(0,0);
     });
     this.scene.input.keyboard.on("keydown_S", () => {
       this.body.setVelocity(0,100);
+      this.scene.anims.play('player_normal',true);
     });
     this.scene.input.keyboard.on("keyup_S", () => {
       this.body.setVelocity(0,0);
     });
-
-    this.scene.player.anims.play('player_normal', true);
   }
 }
