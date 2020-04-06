@@ -31,7 +31,7 @@ export default class Game extends Phaser.Scene {
       repeat: -1
     });
     
-    this.player = player(this,300, 640);
+    this.player = new Player(this,300, 640);
   }
 
   update(time, delta) {    

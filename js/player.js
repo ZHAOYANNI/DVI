@@ -40,32 +40,33 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.label3.text = this.bullet;
   }
 
-  preUpdate() {
+  preUpdate(t,d) {
+    super.preUpdate(t,d);
     // movimiento de jugador
     this.scene.input.keyboard.on("keydown_D", () => {
       this.body.setVelocity(100,0);
-      this.scene.anims.play('player_normal',true);
+      this.play('player_normal',true);
     });
     this.scene.input.keyboard.on("keyup_D", () => {
       this.body.setVelocity(0,0);
     });
     this.scene.input.keyboard.on("keydown_A", () => {
       this.body.setVelocity(-100,0);
-      this.scene.anims.play('player_normal',true);
+      this.play('player_normal',true);
     });
     this.scene.input.keyboard.on("keyup_A", () => {
       this.body.setVelocity(0,0);
     });
     this.scene.input.keyboard.on("keydown_W", () => {
       this.body.setVelocity(0,-100);
-      this.scene.anims.play('player_normal',true);
+      this.play('player_normal',true);
     });
     this.scene.input.keyboard.on("keyup_W", () => {
       this.body.setVelocity(0,0);
     });
     this.scene.input.keyboard.on("keydown_S", () => {
       this.body.setVelocity(0,100);
-      this.scene.anims.play('player_normal',true);
+      this.play('player_normal',true);
     });
     this.scene.input.keyboard.on("keyup_S", () => {
       this.body.setVelocity(0,0);
