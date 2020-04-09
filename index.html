@@ -7,13 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=2.0">
     <link rel="stylesheet" href="js/game.css">
     <script src="js/phaser.min.js"></script>
-    <title>¡Juego con Phaser!</title>
+    <title>Underwater crisis</title>
 </head>
 
 <body>
     <div id = "container">
 		<script type="module">
-        import Game from './js/game.js';
+        import Game from './js/Game.js';
+        import Menu from './js/Menu.js';
 
         var config = {
             type: Phaser.AUTO,
@@ -27,7 +28,7 @@
                 mode: Phaser.Scale.FIT,
                 autoCenter: Phaser.Scale.CENTER_BOTH
             },
-            scene: [ Game ],
+            scene: [ Menu, Game],
             physics: { 
                 default: 'arcade', 
                 arcade: { 
@@ -38,7 +39,7 @@
                 }
             }
         };
-        new Phaser.Game(config);
+        var game = new Phaser.Game(config);
     </script>
     </div>
 

@@ -71,5 +71,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.scene.input.keyboard.on("keyup_S", () => {
       this.body.setVelocity(0,0);
     });
+    this.scene.input.keyboard.on("keydown_Z", () => {
+      this.play('player_attack',true);
+    });
+    this.scene.input.keyboard.on("keyup_Z", () => {
+      this.play('player_normal',true);
+    });
   }
 }
