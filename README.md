@@ -21,7 +21,7 @@ npx http-server
 
 * Hito 2
 
-  ~~Limite: 30/3/2020~~ Cese por actividades por Covid-19
+  - [ ] Limite: 15/04/2020
 
 * Hito 3
 ```
