@@ -8,7 +8,7 @@ BasicGame.MainMenu.prototype = {
 
 	create: function () {
 		this.add.sprite(0,0,'preloaderBackground');
-        this.playButton = this.add.button(320, 520, 'button', this.startGame, this, 2, 1, 0); 
+        this.playButton = this.add.button(820, 850, 'button', this.startGame, this, 2, 1, 0); 
 	},
 
 	update: function () {

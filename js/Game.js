@@ -39,13 +39,14 @@ BasicGame.Game.prototype = {
 
     this.player = this.game.add.sprite(300,640,'shark');
     this.player.animations.add('player_normal',[0,1,2,3,4,5,6,7],7,true);//'run'
-    this.player.animations.add('player_attack',[8,9,10,11,12],7,true);
+    this.player.animations.add('player_attack',[8,9,10,11,12],7,false);
     this.player.animations.add('player_died',[13],7,false);
+
     this.game.physics.enable(this.player);
     this.player.body.collideWorldBounds = true;
+    this.player.body.onWorldBounds = new Phaser.Signal();
 
     this.player.body.bounce.set(0);
-    //this.sprite.body.tilePadding.set(64);
     this.game.camera.follow(this.player);
 
     //this.game.input.onDown.add(this.jump,this);
@@ -90,16 +91,18 @@ BasicGame.Game.prototype = {
         this.player.body.velocity.y = -100;
     }
     else if(S.isDown){
-        this.player.animations.play('player_normal', true);
         this.player.body.velocity.x = 0;
         this.player.body.velocity.y = 100;
     }
-    else if(A.isUp || S.isUp || D.isUp || W.isUp){
+    else if(A.isUp || S.isUp || D.isUp || W.isUp ){
       this.player.body.velocity.x = 0;
       this.player.body.velocity.y = 0;
     }
     if (Q.isDown){
-      this.player.animations.play('player_attack', true);
+      this.player.animations.play('player_attack');
+    }
+    else if(Q.isUp){
+      this.player.animations.play('player_normal', true);
     }
     if (Z.isDown) {
       this.dead();
@@ -108,16 +111,16 @@ BasicGame.Game.prototype = {
 
   },
 
-  quitGame: function (pointer) {
+    quitGame: function (pointer) {
 
-    if(!this.playing) {
-           // delete this.player;
-            delete this.sprite;
-            //takes us back to Main Menu
-            this.game.time.events.add(3000, function(){this.state.start('MainMenu');}, this);
-            
+        if(!this.playing) {
+               // delete this.player;
+                delete this.sprite;
+                //takes us back to Main Menu
+                this.game.time.events.add(3000, function(){this.state.start('MainMenu');}, this);
+                
         }
-  },
+    },
 /*
     hitCoin: function (sprite,tile) {
         if (tile.alpha != 0) {
@@ -128,7 +131,8 @@ BasicGame.Game.prototype = {
     },*/
 
     dead: function () {
-      this.player.animations.play('player_died', true);
+      this.player.animations.play('player_died');
+      this.player.body.velocity.y = 100;
       console.log("dead");
       this.playing=false;
     }
