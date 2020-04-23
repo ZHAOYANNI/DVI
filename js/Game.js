@@ -21,6 +21,8 @@ BasicGame.Game = function (game) {
     this.score = 0;
     this.life = 3;
     this.bullet = 0;
+
+    this.fish = [];
 };
 
 BasicGame.Game.prototype = {
@@ -54,6 +56,8 @@ BasicGame.Game.prototype = {
     this.game.physics.arcade.TILE_BIAS = 50;
     this.playing = true;
 
+ 
+
     //创建WASD按键
     A = this.game.input.keyboard.addKey(Phaser.Keyboard.A);
     D = this.game.input.keyboard.addKey(Phaser.Keyboard.D);
@@ -62,14 +66,6 @@ BasicGame.Game.prototype = {
     Q = this.game.input.keyboard.addKey(Phaser.Keyboard.Q);
     Z = this.game.input.keyboard.addKey(Phaser.Keyboard.Z);
   },
-
-    /*jump: function() {
-        if (this.sprite.body.blocked.down) {
-            this.sprite.body.velocity.y = -720;
-            this.sprite.animations.stop();
-            this.sprite.frame = 2;
-        }
-    },*/
 
   update: function () {
 
@@ -107,6 +103,16 @@ BasicGame.Game.prototype = {
     if (Z.isDown) {
       this.dead();
     }
+
+    while(this.fish.length < 10){
+      var food = this.game.add.sprite(900, 500, 'fish');
+      this.game.physics.arcade.enable(food);
+      food.enableBody = true;
+      this.fish.push(food);
+      food.body.velocity.x = -150;
+      
+      
+    }
     this.quitGame(this.playing);
 
   },
@@ -135,6 +141,14 @@ BasicGame.Game.prototype = {
       this.player.body.velocity.y = 100;
       console.log("dead");
       this.playing=false;
-    }
-
+    },
+  
+   foodUp: function (fish) {
+     var food = this.game.add.sprite(500, 1080, 'fish');
+     this.game.physics.arcade.enable(food);
+     food.enableBody = true;
+     fish.push(food);
+  },
 };
+
+
