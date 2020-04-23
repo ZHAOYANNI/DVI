@@ -21,6 +21,9 @@ BasicGame.Preloader.prototype = {
 	    this.load.image('score100', 'assets/images/score100-sheet0.png');
 	    this.load.image('score250', 'assets/images/score250-sheet0.png');
 
+		this.load.image('fishS1', 'assets/images/smallfish-sheet0.png');
+		this.load.image('fishS2', 'assets/images/smallfish-sheet1.png');
+
 	    this.load.image('addlife', 'assets/images/sharklife-sheet0.png');
 	    this.load.image('addbomb', 'assets/images/superbomb-sheet0.png');
 	    this.load.image('addbullet', 'assets/images/fireballs-sheet0.png');

@@ -107,9 +107,37 @@ BasicGame.Game.prototype = {
     if (Z.isDown) {
       this.dead();
     }
-    this.quitGame(this.playing);
+  
+    var entities = [];
+    this.randBubble(entities);
 
+    this.quitGame(this.playing);
   },
+
+    randBubble: function(entities) {
+      var LIMITBUBBLE = 25;
+      var x, y, entity;
+
+      for (entities.length; entities.length < LIMITBUBBLE; ) {
+          var x = Math.random() * this.game.world.width;
+          var y = Math.random() * this.game.world.height;
+          console.log(entities.length);
+          
+          var entity = this.game.add.sprite(x, y, 'bubbleM');
+          this.game.physics.arcade.enable(entity);
+          entity.enableBody = true;
+          entity.body.velocity.y = -100;
+          
+          entities.push(entity);
+      }
+      
+      for (var i = 0; i < LIMITBUBBLE; i++) {
+        if(entities[i].y < 0){
+          entities[i].destroy();
+          numBubble--;
+        }
+      }
+    },
 
     quitGame: function (pointer) {
 
@@ -121,7 +149,7 @@ BasicGame.Game.prototype = {
                 
         }
     },
-/*
+    /*
     hitCoin: function (sprite,tile) {
         if (tile.alpha != 0) {
             tile.alpha = 0;
