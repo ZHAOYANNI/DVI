@@ -1,5 +1,4 @@
 BasicGame.Game = function (game) {
-
   //  When a State is added to Phaser it automatically has the following properties set on it, even if they already exist:
     this.game;    //  a reference to the currently running game
     this.add;   //  used to add sprites, text, groups, etc
@@ -44,34 +43,33 @@ BasicGame.Game.prototype = {
     this.player.animations.add('player_attack',[8,9,10,11,12],7,false);
     this.player.animations.add('player_died',[13],7,false);
 
-    this.game.physics.enable(this.player);
+    this.physics.enable(this.player);
     this.player.body.collideWorldBounds = true;
     this.player.body.onWorldBounds = new Phaser.Signal();
 
     this.player.body.bounce.set(0);
-    this.game.camera.follow(this.player);
+    //this.camera.follow(this.player);
 
-    //this.game.input.onDown.add(this.jump,this);
-    this.game.physics.startSystem(Phaser.Physics.ARCADE);
-    this.game.physics.arcade.TILE_BIAS = 50;
+    //this.input.onDown.add(this.jump,this);
+    this.physics.startSystem(Phaser.Physics.ARCADE);
+    this.physics.arcade.TILE_BIAS = 50;
     this.playing = true;
 
- 
-
     //创建WASD按键
-    A = this.game.input.keyboard.addKey(Phaser.Keyboard.A);
-    D = this.game.input.keyboard.addKey(Phaser.Keyboard.D);
-    W = this.game.input.keyboard.addKey(Phaser.Keyboard.W);
-    S = this.game.input.keyboard.addKey(Phaser.Keyboard.S);
-    Q = this.game.input.keyboard.addKey(Phaser.Keyboard.Q);
-    Z = this.game.input.keyboard.addKey(Phaser.Keyboard.Z);
+    A = this.input.keyboard.addKey(Phaser.Keyboard.A);
+    D = this.input.keyboard.addKey(Phaser.Keyboard.D);
+    W = this.input.keyboard.addKey(Phaser.Keyboard.W);
+    S = this.input.keyboard.addKey(Phaser.Keyboard.S);
+    Q = this.input.keyboard.addKey(Phaser.Keyboard.Q);
+    Z = this.input.keyboard.addKey(Phaser.Keyboard.Z);
+
+    this.bubble = new bubbleObj(this);
+    this.bubble.init();
   },
 
   update: function () {
 
     //this.game.physics.arcade.collide(this.player,this.layer);
-    
-
     if (D.isDown) {
         this.player.animations.play('player_normal', true);
         this.player.body.velocity.x = 100;
@@ -104,9 +102,7 @@ BasicGame.Game.prototype = {
       this.dead();
     }
   
-    var entities = [];
-    this.randBubble(entities);
-
+   /* 
     while(this.fish.length < 10){
       var food = this.game.add.sprite(900, 500, 'fish');
       this.game.physics.arcade.enable(food);
@@ -115,36 +111,11 @@ BasicGame.Game.prototype = {
       food.body.velocity.x = -150;
       
       
-    }
-    this.quitGame(this.playing);
-
+    }*/
+    bubbleMonitor(this.bubble);
+    this.bubble.dead();
     this.quitGame(this.playing);
   },
-
-    randBubble: function(entities) {
-      var LIMITBUBBLE = 25;
-      var x, y, entity;
-
-      for (entities.length; entities.length < LIMITBUBBLE; ) {
-          var x = Math.random() * this.game.world.width;
-          var y = Math.random() * this.game.world.height;
-          console.log(entities.length);
-          
-          var entity = this.game.add.sprite(x, y, 'bubbleM');
-          this.game.physics.arcade.enable(entity);
-          entity.enableBody = true;
-          entity.body.velocity.y = -100;
-          
-          entities.push(entity);
-      }
-      
-      for (var i = 0; i < LIMITBUBBLE; i++) {
-        if(entities[i].y < 0){
-          entities[i].destroy();
-          numBubble--;
-        }
-      }
-    },
 
     quitGame: function (pointer) {
 
@@ -178,6 +149,5 @@ BasicGame.Game.prototype = {
      food.enableBody = true;
      fish.push(food);
   },
+  
 };
-
-
