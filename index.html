@@ -3,34 +3,45 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/png" />
     <meta name="viewport" content="width=device-width, initial-scale=2.0">
     <link rel="stylesheet" href="js/game.css">
     <script src="js/phaser.min.js"></script>
-    <script src="js/Boot.js"></script>
-    <script src="js/Preloader.js"></script>
-    <script src="js/MainMenu.js"></script>
-    <script src="js/Game.js"></script>
-    <script src="js/Bubble.js"></script>
-    <title>Underwater crisis!</title>
+    <title>Underwater crisis</title>
 </head>
 
 <body>
+    <div id = "container">
+		<script type="module">
+        import Game from './js/Game.js';
+        import Menu from './js/Menu.js';
 
-    <script type="text/javascript">
-        window.onload = function() {
-            var game = new Phaser.Game(1920, 1080, Phaser.AUTO, '');
-
-            game.state.add('Boot', BasicGame.Boot);
-            game.state.add('Preloader', BasicGame.Preloader);
-            game.state.add('MainMenu', BasicGame.MainMenu);
-            game.state.add('Game', BasicGame.Game);
-
-            //  Now start the Boot state.
-            game.state.start('Boot');
-
+        var config = {
+            type: Phaser.AUTO,
+            width: 1920,
+            height: 1080,
+            pixelArt: true,
+            input: {
+                gamepad: true
+            },
+            scale: {
+                mode: Phaser.Scale.FIT,
+                autoCenter: Phaser.Scale.CENTER_BOTH
+            },
+            scene: [ Menu, Game],
+            physics: { 
+                default: 'arcade', 
+                arcade: { 
+                    gravity: { 
+                       // y: 400 
+                    }, 
+                    debug: false 
+                }
+            }
         };
+        var game = new Phaser.Game(config);
     </script>
-
+    </div>
 
 </body>
 
