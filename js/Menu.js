@@ -11,33 +11,21 @@ export default class Menu extends Phaser.Scene {
 
 	create() {
 	  	this.add.image(960, 540, 'preloaderBackground');
-	    //this.playButton = this.add.(320, 520, 'button', this.startGame(), this, 2, 1, 0);
-	    this.playButton = this.add.sprite(370, 620, 'button').setInteractive();
-
-	    this.anims.create({
-	      key: 'button1',
-	      frames: this.anims.generateFrameNumbers('button', { start: 0, end: 1}),
-	      frameRate: 10,
-	      repeat: 0
+		this.playButton = this.add.sprite(950, 900, 'button').setInteractive();
+		
+		this.playButton.on('pointerover', function(){
+	    	this.setFrame(1);
 	    });
-	    this.anims.create({
-	      key: 'button2',
-	      frames: this.anims.generateFrameNumbers('button', { start: 1, end: 2}),
-	      frameRate: 10,
-	      repeat: 0
+	    this.playButton.on('pointerout', function(){
+	    	this.setFrame(0);
+	    });
+	    this.playButton.on('pointerdown', function(){
+	    	//this.scene.scene.start('playgame');
+	    	this.scene.scene.start('playgame');
 	    });
 	}
 
 	update(titleme, delta) {
-	    this.playButton.on('pointerover', function(){
-	    	this.play('button1');
-	    });
-	    this.playButton.on('pointerout', function(){
-	    	this.play('button2');
-	    });
-	    this.playButton.on('pointerdown', function(){
-	    	//this.scene.scene.start('playgame');
-	    	this.scene.start('playgame');
-	    });
+	    
 	}
 }

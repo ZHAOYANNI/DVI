@@ -7,7 +7,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
-    this,scene.sys.displayList.add(this);
+    this.scene.sys.displayList.add(this);
     this.scene.sys.updateList.add(this);
     this.scene.sys.arcadePhysics.world.enableBody(this, 0);
     this.body.setCollideWorldBounds(true);
