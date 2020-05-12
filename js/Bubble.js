@@ -4,7 +4,7 @@ export default class Bubble extends Phaser.GameObjects.Sprite {
 
 		this.scene.add.existing(this);
 		this.scene.physics.add.existing(this);
-		this,scene.sys.displayList.add(this);
+		this.scene.sys.displayList.add(this);
 		this.scene.sys.updateList.add(this);
 		this.scene.sys.arcadePhysics.world.enableBody(this, 0);
 
@@ -19,6 +19,6 @@ export default class Bubble extends Phaser.GameObjects.Sprite {
 
 	preUpdate(t,d) {
 		super.preUpdate(t,d);
-      	this.body.setVelocity(-(Math.random()*0.87+0.4)*100);
+      	this.body.setVelocity(10,-(Math.random()*0.87+0.4)*100);
 	}
 }
