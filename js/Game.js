@@ -1,6 +1,7 @@
 import Player from './player.js';
 import SmallFish from './SmallFish.js';
 import BigFish from './BigFish.js';
+import Bubble from './Bubble.js';
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -16,8 +17,7 @@ export default class Game extends Phaser.Scene {
     //this.load.audio('audio-bounce', ['audio/bounce.ogg', 'audio/bounce.mp3', 'audio/bounce.m4a']);
     this.load.spritesheet('player', 'assets/images/shark-sheet0.png', {frameWidth: 128,frameHeight: 101});
 
-    this.load.image('bubbleM', 'assets/images/bubble12px-sheet0.png');
-    this.load.image('bubbleL', 'assets/images/bubble18px-sheet0.png');
+    this.load.spritesheet('bubble', 'assets/images/bubble18px-sheet0.png', {frameWidth: 18, frameHeight: 18});
     this.load.spritesheet('SmallFish', 'assets/images/smallfish-sheet0.png', {frameWidth: 48, frameHeight: 27});
     this.load.spritesheet('BigFish', 'assets/images/bigfish-sheet0.png', {frameWidth: 80, frameHeight: 64});
   }
@@ -54,6 +54,8 @@ export default class Game extends Phaser.Scene {
      //el grupo de los pecesitos.
      this.smallgroup = this.add.group();
      this.biggroup = this.add.group();
+     this.bubblegroup = this.add.group();
+
      for (var i = 0; i < 10; i++){
        this.SmallFish = new SmallFish(this, 1000, 200+Math.random()*700);
        this.smallgroup.add(this.SmallFish);
@@ -62,6 +64,11 @@ export default class Game extends Phaser.Scene {
        this.BigFish = new BigFish(this, 1000, 200+Math.random()*700);
        this.biggroup.add(this.BigFish);
      };
+
+     for (var i = 0; i < 10; i++){
+      this.bubble= new Bubble(this, Math.random() * this.game.width, Math.random() * this.game.height);
+      this.bubblegroup.add(this.bubble);
+    };
   }
 
   update(time, delta) {    
