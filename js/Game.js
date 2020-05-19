@@ -182,14 +182,38 @@ export default class Game extends Phaser.Scene {
         this.bubblegroup.getChildren()[i].y =Math.random() * this.game.config.height;
       }
     }
-    // Actualiza los pecesitos
-    if(this.smallgroup.getLength() > 0){
-      for (var i = 0; i < this.smallgroup.getLength(); i++){
-        if(this.smallgroup.getChildren()[i].x <= 150){
-          this.smallgroup.remove(this.smallgroup.getChildren()[i], true, true);
-          i--;
-        }
+       // Actualiza los pecesitos
+    var len = this.smallgroup.getLength();
+    var i = 0;
+    while(i < 7 && i < len){
+      if(this.smallgroup.getChildren()[i].x <= 100){
+        this.smallgroup.remove(this.smallgroup.getChildren()[i], true, true);
+        i--;
+        console.log("eliminado pez");
+      }else{
+        break;
       }
+      i++;
+    }
+    // Actualiza los peces grandes
+    len = this.biggroup.getLength();
+    i = 0;
+    while(i < 2 && i < len){
+      if(this.biggroup.getChildren()[i].x <= 100){
+        this.biggroup.remove(this.biggroup.getChildren()[i], true, true);
+        i--;
+        console.log("eliminado PEZ");
+      }else{
+        break;
+      }
+      i++;
+    }
+    // Actualiza los submarinos
+    len = this.subgroup.getLength();
+    i = 0;
+    if(i < len && this.subgroup.getChildren()[i].x <= 100){
+      this.subgroup.remove(this.subgroup.getChildren()[i], true, true);
+      console.log("eliminado sub");
     }
     
 
