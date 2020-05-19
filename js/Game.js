@@ -167,7 +167,7 @@ export default class Game extends Phaser.Scene {
       }
     }
      // Destruir una mina
-     if(this.cont % 500 == 0){
+     if(this.cont % 600 == 0){
         if(this.Mingroup.getLength()>0){
           this.Mingroup.remove(this.Mingroup.getChildren()[0], true, true);
         }
@@ -189,7 +189,6 @@ export default class Game extends Phaser.Scene {
       if(this.smallgroup.getChildren()[i].x <= 100){
         this.smallgroup.remove(this.smallgroup.getChildren()[i], true, true);
         i--;
-        console.log("eliminado pez");
       }else{
         break;
       }
@@ -202,7 +201,6 @@ export default class Game extends Phaser.Scene {
       if(this.biggroup.getChildren()[i].x <= 100){
         this.biggroup.remove(this.biggroup.getChildren()[i], true, true);
         i--;
-        console.log("eliminado PEZ");
       }else{
         break;
       }
@@ -213,17 +211,79 @@ export default class Game extends Phaser.Scene {
     i = 0;
     if(i < len && this.subgroup.getChildren()[i].x <= 100){
       this.subgroup.remove(this.subgroup.getChildren()[i], true, true);
-      console.log("eliminado sub");
     }
-    
-
-    this.input.keyboard.on("keydown_Z", () => {
-      this.player.play('player_attack',true);
-      this.playerbullet = new SharkB(this, this.player.x + 15, this.player.y);
-      this.playerbullet.play('shark_bullet',false)
+    // Dispara balas
+    this.input.keyboard.on("keydown_Q", () => {
+      if(this.player.getNumbalas() != 0){
+        this.player.play('player_attack',true);
+        this.playerbullet = new SharkB(this, this.player.x + 15, this.player.y);
+        this.playerbullet.play('shark_bullet',false)
+        this.player.balas(-1);
+      }
     });
-    this.input.keyboard.on("keyup_Z", () => {
+    this.input.keyboard.on("keyup_Q", () => {
       this.player.play('player_normal',true);
     });
+
+    // Collider de Submarinos, minas y accesorio
+    this.physics.add.collider(
+      this.player,
+      this.Mingroup, 
+      function (player,Mingroup){
+        Mingroup.destroy();
+        this.player.corazon(-1);
+        /*let explosion = this.add.sprite(200, player.y, 'boom');
+        explosion.play('explode');
+        explosion.on('animationcomplete', function(listener){
+            this.gameOver = true;
+       }.bind(this))*/
+      }.bind(this));
+    this.physics.add.collider(
+      this.player,
+      this.subgroup,
+      function (player,subgroup){
+        subgroup.destroy();
+        this.player.corazon(-1);
+      }.bind(this));
+    this.physics.add.collider(
+      this.player,
+      this.accesorio,
+      function (player,accesorio){
+        accesorio.destroy();
+        if(this.accesorio.collide() == 1){
+          this.player.corazon(1);
+        }
+        else if(this.accesorio.collide() == 2){
+          this.player.balas(20);
+        }
+        else if(this.accesorio.collide() == 3){
+          this.smallgroup.clear(true,true);
+          this.biggroup.clear(true,true);
+          this.subgroup.clear(true,true);
+          this.Mingroup.clear(true,true);
+        }
+        else if(this.accesorio.collide() == 4){
+          this.player.corazon(-1);
+        }
+        else if(this.accesorio.collide() == 5){
+          this.player.point(250);
+        }
+      }.bind(this));
+    
+    // Collider de peces 
+    this.physics.add.collider(
+      this.player,
+      this.biggroup,
+      function (player,biggroup){
+        biggroup.destroy();
+        this.player.point(100);
+      }.bind(this)); 
+    this.physics.add.collider(
+      this.player,
+      this.smallgroup,
+      function (player,smallgroup){
+        smallgroup.destroy();
+        this.player.point(50);
+      }.bind(this)); 
   }
 }

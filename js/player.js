@@ -3,7 +3,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     super(scene, x, y, 'player');
     this.score = 0;
     this.life = 3;
-    this.bullet = 0;
+    this.bullet = 10;
 
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
@@ -31,7 +31,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
   
   balas(num) {
     this.bullet = this.bullet + num;
+    if(this.bullet < 0){
+      this.bullet = 0;
+    }
     this.updateScore();
+  }
+
+  getNumbalas(){
+    return this.bullet;
   }
 
   updateScore() {
@@ -44,28 +51,28 @@ export default class Player extends Phaser.GameObjects.Sprite {
     super.preUpdate(t,d);
     // movimiento de jugador
     this.scene.input.keyboard.on("keydown_D", () => {
-      this.body.setVelocity(100,0);
+      this.body.setVelocity(150,0);
       this.play('player_normal',true);
     });
     this.scene.input.keyboard.on("keyup_D", () => {
       this.body.setVelocity(0,0);
     });
     this.scene.input.keyboard.on("keydown_A", () => {
-      this.body.setVelocity(-100,0);
+      this.body.setVelocity(-150,0);
       this.play('player_normal',true);
     });
     this.scene.input.keyboard.on("keyup_A", () => {
       this.body.setVelocity(0,0);
     });
     this.scene.input.keyboard.on("keydown_W", () => {
-      this.body.setVelocity(0,-100);
+      this.body.setVelocity(0,-150);
       this.play('player_normal',true);
     });
     this.scene.input.keyboard.on("keyup_W", () => {
       this.body.setVelocity(0,0);
     });
     this.scene.input.keyboard.on("keydown_S", () => {
-      this.body.setVelocity(0,100);
+      this.body.setVelocity(0,150);
       this.play('player_normal',true);
     });
     this.scene.input.keyboard.on("keyup_S", () => {
