@@ -9,6 +9,7 @@ import Bomba from './Bomba.js';
 import PezVeneno from './PezVeneno.js';
 import Minas from './Minas.js';
 import SharkB from './SharkB.js';
+import Meat from './Meat.js';
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -25,6 +26,7 @@ export default class Game extends Phaser.Scene {
     this.load.image('balas', 'assets/images/fireballs-sheet0.png');
     this.load.image('bomba', 'assets/images/superbomb-sheet0.png');
     this.load.image('PezVeneno', 'assets/images/bigfish-sheet2.png');
+    this.load.image('pollo', 'assets/images/meat-sheet0.png');
     //this.load.audio('audio-bounce', ['audio/bounce.ogg', 'audio/bounce.mp3', 'audio/bounce.m4a']);
     this.load.spritesheet('player', 'assets/images/shark-sheet0.png', {frameWidth: 128,frameHeight: 101});
 
@@ -98,7 +100,7 @@ export default class Game extends Phaser.Scene {
      this.bubblegroup = this.add.group();
      this.subgroup = this.add.group();
      this.Mingroup = this.add.group();
-
+    
      for (var i = 0; i < 7; i++){
        this.SmallFish = new SmallFish(this, this.game.config.width, 300+Math.random()*700);
        this.smallgroup.add(this.SmallFish);
@@ -150,7 +152,7 @@ export default class Game extends Phaser.Scene {
     if(this.cont % 480 == 0){
       var j = Math.random();
       if(j < 0.3){
-        var i = Math.random()*4;
+        var i = Math.random()*5;
         if(i < 1){
           this.accesorio = new Vida(this, this.game.config.width, 300+Math.random()*700);
         }
@@ -160,10 +162,12 @@ export default class Game extends Phaser.Scene {
         else if(i >= 2 && i < 3){
           this.accesorio = new Bomba(this, this.game.config.width, 300+Math.random()*700);
         }
-        else{
+        else if(i >= 3 && i < 4){
           this.accesorio = new PezVeneno(this, this.game.config.width, 300+Math.random()*700);
         }
-
+        else{
+          this.accesorio = new Meat(this, this.game.config.width, 300+Math.random()*700);
+        }
       }
     }
 
@@ -186,10 +190,9 @@ export default class Game extends Phaser.Scene {
         this.bubblegroup.getChildren()[i].y =Math.random() * this.game.config.height;
       }
     }
-       // Actualiza los pecesitos
-    var len = this.smallgroup.getLength();
+    // Actualiza los pecesitos
     var i = 0;
-    while(i < 7 && i < len){
+    while(i < 7 && i < this.smallgroup.getLength()){
       if(this.smallgroup.getChildren()[i].x <= 100){
         this.smallgroup.remove(this.smallgroup.getChildren()[i], true, true);
         i--;
@@ -199,9 +202,8 @@ export default class Game extends Phaser.Scene {
       i++;
     }
     // Actualiza los peces grandes
-    len = this.biggroup.getLength();
     i = 0;
-    while(i < 2 && i < len){
+    while(i < 2 && i < this.biggroup.getLength()){
       if(this.biggroup.getChildren()[i].x <= 100){
         this.biggroup.remove(this.biggroup.getChildren()[i], true, true);
         i--;
@@ -211,12 +213,16 @@ export default class Game extends Phaser.Scene {
       i++;
     }
     // Actualiza los submarinos
-    len = this.subgroup.getLength();
+    var len = this.subgroup.getLength();
     i = 0;
     if(i < len && this.subgroup.getChildren()[i].x <= 100){
       this.subgroup.remove(this.subgroup.getChildren()[i], true, true);
     }
-    // Dispara balas
+
+    // Actualiza los accesorios
+    // No sé cómo se hace
+
+    // Disparar balas
     this.input.keyboard.on("keydown_Q", () => {
       this.veces = 0;
       if(this.player.getNumbalas() >= 0){
@@ -254,7 +260,6 @@ export default class Game extends Phaser.Scene {
       this.player,
       this.accesorio,
       function (player,accesorio){
-        accesorio.destroy();
         if(this.accesorio.collide() == 1){
           this.player.corazon(1);
         }
@@ -273,6 +278,7 @@ export default class Game extends Phaser.Scene {
         else if(this.accesorio.collide() == 5){
           this.player.point(250);
         }
+        accesorio.destroy();
       }.bind(this));
     
     // Collider de peces 
