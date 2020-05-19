@@ -41,6 +41,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
     return this.bullet;
   }
 
+  getNumlife(){
+    return this.life;
+  }
   updateScore() {
     this.label1.text = this.life;
     this.label2.text = this.score;

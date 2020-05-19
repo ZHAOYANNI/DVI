@@ -91,7 +91,7 @@ export default class Game extends Phaser.Scene {
     });
 
     this.player = new Player(this,300, 640);
-    //this.bubble = new Bubble(this, this.game.width,this.game.height);
+    this.playerbullet;
      //el grupo de los pecesitos.
      this.smallgroup = this.add.group();
      this.biggroup = this.add.group();
@@ -166,14 +166,18 @@ export default class Game extends Phaser.Scene {
 
       }
     }
-     // Destruir una mina
-     if(this.cont % 600 == 0){
-        if(this.Mingroup.getLength()>0){
-          this.Mingroup.remove(this.Mingroup.getChildren()[0], true, true);
-        }
 
-        this.cont = 0;
-     }
+    if(this.player.getNumlife() == 0){
+      this.gameover = true;
+    }
+    // Destruir una mina
+    if(this.cont % 600 == 0){
+      if(this.Mingroup.getLength()>0){
+        this.Mingroup.remove(this.Mingroup.getChildren()[0], true, true);
+      }
+
+      this.cont = 0;
+    }
 
     // Actualiza las burbujas
     for (var i = 0; i < 20; i++){
@@ -214,7 +218,8 @@ export default class Game extends Phaser.Scene {
     }
     // Dispara balas
     this.input.keyboard.on("keydown_Q", () => {
-      if(this.player.getNumbalas() != 0){
+      this.veces = 0;
+      if(this.player.getNumbalas() >= 0){
         this.player.play('player_attack',true);
         this.playerbullet = new SharkB(this, this.player.x + 15, this.player.y);
         this.playerbullet.play('shark_bullet',false)
@@ -285,5 +290,6 @@ export default class Game extends Phaser.Scene {
         smallgroup.destroy();
         this.player.point(50);
       }.bind(this)); 
+
   }
 }
