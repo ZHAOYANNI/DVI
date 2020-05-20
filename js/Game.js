@@ -100,6 +100,7 @@ export default class Game extends Phaser.Scene {
      this.bubblegroup = this.add.group();
      this.subgroup = this.add.group();
      this.Mingroup = this.add.group();
+     this.bulletgroup = this.add.group();
     
      for (var i = 0; i < 7; i++){
        this.SmallFish = new SmallFish(this, this.game.config.width, 300+Math.random()*700);
@@ -115,6 +116,20 @@ export default class Game extends Phaser.Scene {
       this.bubblegroup.add(this.bubble);
      }
     this.cont = 0;
+
+    // Disparar balas
+    this.input.keyboard.on("keydown_Q", () => {
+      if(this.player.getNumbalas() > 0){
+        this.player.play('player_attack',true);
+        this.playerbullet = new SharkB(this, this.player.x + 15, this.player.y);
+        this.bulletgroup.add(this.playerbullet);
+        this.playerbullet.play('shark_bullet',false);
+        this.player.balas(-1);
+      }
+    });
+    this.input.keyboard.on("keyup_Q", () => {
+      this.player.play('player_normal',true);
+    });
   }
 
   update(time, delta) {  
@@ -222,19 +237,7 @@ export default class Game extends Phaser.Scene {
     // Actualiza los accesorios
     // No sé cómo se hace
 
-    // Disparar balas
-    this.input.keyboard.on("keydown_Q", () => {
-      this.veces = 0;
-      if(this.player.getNumbalas() >= 0){
-        this.player.play('player_attack',true);
-        this.playerbullet = new SharkB(this, this.player.x + 15, this.player.y);
-        this.playerbullet.play('shark_bullet',false)
-        this.player.balas(-1);
-      }
-    });
-    this.input.keyboard.on("keyup_Q", () => {
-      this.player.play('player_normal',true);
-    });
+    
 
     // Collider de Submarinos, minas y accesorio
     this.physics.add.collider(
@@ -297,5 +300,22 @@ export default class Game extends Phaser.Scene {
         this.player.point(50);
       }.bind(this)); 
 
+    // Collider entre balas, submarino y minas
+    this.physics.add.collider(
+      this.bulletgroup,
+      this.subgroup,
+      function (bulletgroup,subgroup){
+        bulletgroup.destroy();
+        subgroup.destroy();
+        this.player.point(250);
+      }.bind(this)); 
+    this.physics.add.collider(
+      this.bulletgroup,
+      this.Mingroup,
+      function (bulletgroup,Mingroup){
+        bulletgroup.destroy();
+        Mingroup.destroy();
+        this.player.point(25);
+      }.bind(this)); 
   }
 }

@@ -13,9 +13,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.body.setCollideWorldBounds(true);
 
     //this.cursors = this.scene.input.keyboard.createCursorKeys();
-    this.label1 = this.scene.add.text(200, 100);
-    this.label2 = this.scene.add.text(600, 100);
-    this.label3 = this.scene.add.text(1000, 100);
+    this.label1 = this.scene.add.text(200, 50, this.life, {font: "80px font"});
+    this.label2 = this.scene.add.text(600, 50, this.score, {font: "80px font"});
+    this.label3 = this.scene.add.text(1000, 50, this.bullet, {font: "80px font"});
     this.updateScore();
   }
 
