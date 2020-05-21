@@ -338,7 +338,7 @@ export default class Game extends Phaser.Scene {
         this.player.point(50);
       }.bind(this)); 
 
-    // Collider de balas de player
+    // Collider de balas
     this.physics.add.collider(
       this.bulletgroup,
       this.subgroup,
@@ -354,6 +354,13 @@ export default class Game extends Phaser.Scene {
         bulletgroup.destroy();
         Mingroup.destroy();
         this.player.point(25);
+      }.bind(this)); 
+    this.physics.add.collider(
+      this.rocketgroup,
+      this.Mingroup,
+      function (rocketgroup,Mingroup){
+        rocketgroup.destroy();
+        Mingroup.destroy();
       }.bind(this)); 
   }
 }
