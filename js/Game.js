@@ -3,6 +3,7 @@ import SmallFish from './SmallFish.js';
 import BigFish from './BigFish.js';
 import Bubble from './Bubble.js';
 import Submarino from './Submarino.js';
+import Rocket from './Rocket.js';
 import Vida from './Vida.js';
 import Balas from './Balas.js';
 import Bomba from './Bomba.js';
@@ -10,6 +11,7 @@ import PezVeneno from './PezVeneno.js';
 import Minas from './Minas.js';
 import SharkB from './SharkB.js';
 import Meat from './Meat.js';
+import Cubo from './Cubo.js';
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -34,7 +36,9 @@ export default class Game extends Phaser.Scene {
     this.load.spritesheet('SmallFish', 'assets/images/smallfish-sheet0.png', {frameWidth: 48, frameHeight: 27});
     this.load.spritesheet('BigFish', 'assets/images/bigfish-sheet0.png', {frameWidth: 80, frameHeight: 64});
     this.load.spritesheet('Submarino', 'assets/images/submarino.png', {frameWidth: 192, frameHeight: 128});
+    this.load.spritesheet('rocket', 'assets/images/rocket-sheet0.png', {frameWidth: 64, frameHeight: 26});
     this.load.spritesheet('minas', 'assets/images/bomb-sheet0.png', {frameWidth: 69, frameHeight: 74});
+    this.load.spritesheet('cubos', 'assets/images/barrel-sheet0.png', {frameWidth: 51, frameHeight: 77});
     this.load.spritesheet('sharkbullet', 'assets/images/sharkbullet-sheet0.png', {frameWidth: 64, frameHeight: 80});
   }
 
@@ -55,13 +59,13 @@ export default class Game extends Phaser.Scene {
     });
     this.anims.create({
       key: 'player_attack',
-      frames: this.anims.generateFrameNumbers('player', { start: 7, end: 11 }),
-      frameRate: 10,
+      frames: this.anims.generateFrameNumbers('player', { start: 7, end: 12 }),
+      frameRate: 15,
       repeat: -1
     });
     this.anims.create({
       key: 'player_die',
-      frames: this.anims.generateFrameNumbers('player', { start: 12, end: 13 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 13, end: 13 }),
       frameRate: 5,
       repeat: -1
     });
@@ -94,14 +98,16 @@ export default class Game extends Phaser.Scene {
 
     this.player = new Player(this,300, 640);
     this.playerbullet;
-     //el grupo de los pecesitos.
-     this.smallgroup = this.add.group();
-     this.biggroup = this.add.group();
-     this.bubblegroup = this.add.group();
-     this.subgroup = this.add.group();
-     this.Mingroup = this.add.group();
-     this.bulletgroup = this.add.group();
-    
+    //el grupo de los pecesitos.
+    this.smallgroup = this.add.group();
+    this.biggroup = this.add.group();
+    this.bubblegroup = this.add.group();
+    this.subgroup = this.add.group();
+    this.Mingroup = this.add.group();
+    this.bulletgroup = this.add.group();
+    this.rocketgroup = this.add.group();
+    this.cubogroup = this.add.group();
+
      for (var i = 0; i < 7; i++){
        this.SmallFish = new SmallFish(this, this.game.config.width, 300+Math.random()*700);
        this.smallgroup.add(this.SmallFish);
@@ -163,6 +169,14 @@ export default class Game extends Phaser.Scene {
         this.subgroup.add(this.Submarino);
       }
     }
+    // Genera cubo toxico
+    if(this.cont % 235 == 0){
+      var j = Math.random();
+      if(j < 0.3){
+        this.cubo = new Cubo(this, this.player.x, 100);
+        this.cubogroup.add(this.cubo);
+      }
+    }
     // Genera pez venenoso y los accesorios
     if(this.cont % 480 == 0){
       var j = Math.random();
@@ -198,8 +212,8 @@ export default class Game extends Phaser.Scene {
     // Actualiza las burbujas
     for (var i = 0; i < 20; i++){
       if(this.bubblegroup.getChildren()[i].y <= 150){
-        this.bubblegroup.getChildren()[i].x =Math.random() * this.game.config.width;
-        this.bubblegroup.getChildren()[i].y =Math.random() * this.game.config.height;
+        this.bubblegroup.getChildren()[i].x = Math.random() * this.game.config.width;
+        this.bubblegroup.getChildren()[i].y = Math.random() * this.game.config.height;
       }
     }
     // Actualiza las balas
@@ -231,18 +245,25 @@ export default class Game extends Phaser.Scene {
       i++;
     }
     // Actualiza los submarinos
-    var len = this.subgroup.getLength();
-    i = 0;
-    if(i < len && this.subgroup.getChildren()[i].x <= 100){
-      this.subgroup.remove(this.subgroup.getChildren()[i], true, true);
+    for (var i = 0; i < this.subgroup.getLength(); i++){
+      if(this.subgroup.getChildren()[i].x <= 100){
+        this.subgroup.remove(this.subgroup.getChildren()[i], true, true);
+      }
+
+      if(this.cont % 100 == 0){
+        this.rocket = new Rocket(this, this.subgroup.getChildren()[i].x - 20, this.subgroup.getChildren()[i].y, this.subgroup.getChildren()[i].getImagen());
+        this.rocketgroup.add(this.rocket);
+      }
     }
-
-    // Actualiza los accesorios
-    // No sé cómo se hace
-
+    // Actualiza los rockets
+    for (var i = 0; i < this.rocketgroup.getLength(); i++){
+      if(this.rocketgroup.getChildren()[i].x <= 100){
+        this.rocketgroup.remove(this.rocketgroup.getChildren()[i], true, true);
+      }
+    }
     
-
-    // Collider de Submarinos, minas y accesorio
+    
+    // Collider de player
     this.physics.add.collider(
       this.player,
       this.Mingroup, 
@@ -257,9 +278,23 @@ export default class Game extends Phaser.Scene {
       }.bind(this));
     this.physics.add.collider(
       this.player,
+      this.rocketgroup,
+      function (player,rocketgroup){
+        rocketgroup.destroy();
+        this.player.corazon(-1);
+      }.bind(this));
+    this.physics.add.collider(
+      this.player,
       this.subgroup,
       function (player,subgroup){
         subgroup.destroy();
+        this.player.corazon(-1);
+      }.bind(this));
+    this.physics.add.collider(
+      this.player,
+      this.cubogroup,
+      function (player,cubogroup){
+        cubogroup.destroy();
         this.player.corazon(-1);
       }.bind(this));
     this.physics.add.collider(
@@ -303,7 +338,7 @@ export default class Game extends Phaser.Scene {
         this.player.point(50);
       }.bind(this)); 
 
-    // Collider entre balas, submarino y minas
+    // Collider de balas de player
     this.physics.add.collider(
       this.bulletgroup,
       this.subgroup,

@@ -2,7 +2,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   constructor(scene, x, y) {
     super(scene, x, y, 'player');
     this.score = 0;
-    this.life = 1;
+    this.life = 3;
     this.bullet = 10;
 
     this.scene.add.existing(this);

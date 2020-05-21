@@ -19,6 +19,10 @@ export default class BigFish extends Phaser.GameObjects.Sprite {
       this.setFrame(this.imagen*4);
     }
   
+    getImagen(){
+      return this.imagen - 1;
+    }
+
     preUpdate(t,d) {
       super.preUpdate(t,d);
       this.body.setVelocity(-150, 0);
