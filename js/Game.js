@@ -187,6 +187,7 @@ export default class Game extends Phaser.Scene {
     }
 
     if(this.player.getNumlife() == 0){
+      this.player.play('player_die',false);
       this.gameover = true;
     }
     // Destruir una mina
