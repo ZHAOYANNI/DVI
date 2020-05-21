@@ -62,7 +62,7 @@ export default class Game extends Phaser.Scene {
     this.anims.create({
       key: 'player_die',
       frames: this.anims.generateFrameNumbers('player', { start: 12, end: 13 }),
-      frameRate: 10,
+      frameRate: 5,
       repeat: -1
     });
 
@@ -186,10 +186,6 @@ export default class Game extends Phaser.Scene {
       }
     }
 
-    if(this.player.getNumlife() == 0){
-      this.player.play('player_die',false);
-      this.gameover = true;
-    }
     // Destruir una mina
     if(this.cont % 600 == 0){
       if(this.Mingroup.getLength()>0){
@@ -198,12 +194,18 @@ export default class Game extends Phaser.Scene {
 
       this.cont = 0;
     }
-
+    
     // Actualiza las burbujas
     for (var i = 0; i < 20; i++){
       if(this.bubblegroup.getChildren()[i].y <= 150){
         this.bubblegroup.getChildren()[i].x =Math.random() * this.game.config.width;
         this.bubblegroup.getChildren()[i].y =Math.random() * this.game.config.height;
+      }
+    }
+    // Actualiza las balas
+    for (var i = 0; i < this.bulletgroup.getLength(); i++){
+      if(this.bulletgroup.getChildren()[i].x >= 1850){
+        this.bulletgroup.remove(this.bulletgroup.getChildren()[i], true, true);
       }
     }
     // Actualiza los pecesitos
