@@ -116,6 +116,7 @@ export default class Game extends Phaser.Scene {
 
     this.player = new Player(this,300, 640);
     this.playerbullet;
+    this.explosion = this.add.sprite(-10, -10, '');
     //el grupo de los pecesitos.
     this.smallgroup = this.add.group();
     this.biggroup = this.add.group();
@@ -283,12 +284,10 @@ export default class Game extends Phaser.Scene {
       this.player,
       this.Mingroup, 
       function (player,Mingroup){
-       
-       /* this.explosion.x = Mingroup.x;
+        this.explosion.x = Mingroup.x;
         this.explosion.y = Mingroup.y;
-        this.explosion.play('explosion1');*/
-        Mingroup.play('explosion2');
-        //Mingroup.destroy();
+        this.explosion.play('explosion2');
+        Mingroup.destroy();
         this.player.corazon(-1);
       }.bind(this));
     this.physics.add.collider(
@@ -302,14 +301,19 @@ export default class Game extends Phaser.Scene {
       this.player,
       this.subgroup,
       function (player,subgroup){
-        subgroup.play('explosion1');
-        //subgroup.destroy();
+        this.explosion.x = subgroup.x;
+        this.explosion.y = subgroup.y;
+        this.explosion.play('explosion1');
+        subgroup.destroy();
         this.player.corazon(-1);
       }.bind(this));
     this.physics.add.collider(
       this.player,
       this.cubogroup,
       function (player,cubogroup){
+        this.explosion.x = cubogroup.x;
+        this.explosion.y = cubogroup.y;
+        this.explosion.play('explosion1');
         cubogroup.destroy();
         this.player.corazon(-1);
       }.bind(this));
@@ -360,9 +364,10 @@ export default class Game extends Phaser.Scene {
       this.subgroup,
       function (bulletgroup,subgroup){
         bulletgroup.destroy();
-        subgroup.play('explosion1');
-        
-        //subgroup.destroy();
+        this.explosion.x = subgroup.x;
+        this.explosion.y = subgroup.y;
+        this.explosion.play('explosion1');
+        subgroup.destroy();
         this.player.point(250);
       }.bind(this)); 
     this.physics.add.collider(
@@ -370,8 +375,10 @@ export default class Game extends Phaser.Scene {
       this.Mingroup,
       function (bulletgroup,Mingroup){
         bulletgroup.destroy();
-        //Mingroup.destroy();
-        Mingroup.play('explosion2');
+        this.explosion.x = Mingroup.x;
+        this.explosion.y = Mingroup.y;
+        this.explosion.play('explosion2');
+        Mingroup.destroy();
         this.player.point(25);
       }.bind(this)); 
     this.physics.add.collider(
@@ -379,6 +386,9 @@ export default class Game extends Phaser.Scene {
       this.Mingroup,
       function (rocketgroup,Mingroup){
         rocketgroup.destroy();
+        this.explosion.x = Mingroup.x;
+        this.explosion.y = Mingroup.y;
+        this.explosion.play('explosion2');
         Mingroup.destroy();
       }.bind(this)); 
   }
