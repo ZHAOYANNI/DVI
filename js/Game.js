@@ -22,13 +22,14 @@ export default class Game extends Phaser.Scene {
     this.load.image('life', 'assets/images/guilife-sheet0.png');
     this.load.image('score', 'assets/images/guiscore-sheet0.png');
     this.load.image('bullet', 'assets/images/guitime-sheet0.png');
-    this.load.image('pause', 'assets/images/btnpause-sheet0.png');
+    //this.load.image('pause', 'assets/images/btnpause-sheet0.png');
     this.load.image('sound', 'assets/images/btnsound-sheet1.png');
     this.load.image('vida', 'assets/images/sharklife-sheet0.png');
     this.load.image('balas', 'assets/images/fireballs-sheet0.png');
     this.load.image('bomba', 'assets/images/superbomb-sheet0.png');
     this.load.image('PezVeneno', 'assets/images/bigfish-sheet2.png');
     this.load.image('pollo', 'assets/images/meat-sheet0.png');
+    this.load.spritesheet('pause', 'assets/images/btnpause-sheet0.png', {frameWidth: 141, frameHeight: 147});
     //this.load.audio('audio-bounce', ['audio/bounce.ogg', 'audio/bounce.mp3', 'audio/bounce.m4a']);
     this.load.spritesheet('player', 'assets/images/shark-sheet0.png', {frameWidth: 128,frameHeight: 101});
 
@@ -40,6 +41,7 @@ export default class Game extends Phaser.Scene {
     this.load.spritesheet('minas', 'assets/images/bomb-sheet0.png', {frameWidth: 69, frameHeight: 74});
     this.load.spritesheet('cubos', 'assets/images/barrel-sheet0.png', {frameWidth: 51, frameHeight: 77});
     this.load.spritesheet('sharkbullet', 'assets/images/sharkbullet-sheet0.png', {frameWidth: 64, frameHeight: 80});
+    this.load.spritesheet('explosion', 'assets/images/explosion-sheet0.png', {frameWidth: 208, frameHeight: 172});
   }
 
   create() {
@@ -47,8 +49,13 @@ export default class Game extends Phaser.Scene {
     this.add.image(100, 100, 'life');
     this.add.image(500, 100, 'score');
     this.add.image(900, 100, 'bullet');
-    this.add.image(1600, 100, 'pause');
     this.add.image(1800, 100, 'sound');
+    
+    this.pauseButton = this.add.sprite(1600, 100, 'pause').setInteractive();
+    this.pauseButton.on('pointerdown', function(){
+      this.setFrame(1);
+      this.scene.scene.pause('playgame');   
+    });
 
     // animaciones de player
     this.anims.create({
@@ -94,6 +101,17 @@ export default class Game extends Phaser.Scene {
       key: 'shark_bullet',
       frames: this.anims.generateFrameNumbers('sharkbullet', { start: 0, end: 5 }),
       frameRate: 2
+    });
+
+    this.anims.create({
+      key: 'explosion1',
+      frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 13 }),
+      frameRate: 15
+    });
+    this.anims.create({
+      key: 'explosion2',
+      frames: this.anims.generateFrameNumbers('explosion', { start: 14, end: 25 }),
+      frameRate: 15
     });
 
     this.player = new Player(this,300, 640);
@@ -205,8 +223,6 @@ export default class Game extends Phaser.Scene {
       if(this.Mingroup.getLength()>0){
         this.Mingroup.remove(this.Mingroup.getChildren()[0], true, true);
       }
-
-      this.cont = 0;
     }
     
     // Actualiza las burbujas
@@ -260,21 +276,20 @@ export default class Game extends Phaser.Scene {
       if(this.rocketgroup.getChildren()[i].x <= 100){
         this.rocketgroup.remove(this.rocketgroup.getChildren()[i], true, true);
       }
-    }
-    
+    }  
     
     // Collider de player
     this.physics.add.collider(
       this.player,
       this.Mingroup, 
       function (player,Mingroup){
-        Mingroup.destroy();
+       
+       /* this.explosion.x = Mingroup.x;
+        this.explosion.y = Mingroup.y;
+        this.explosion.play('explosion1');*/
+        Mingroup.play('explosion2');
+        //Mingroup.destroy();
         this.player.corazon(-1);
-        /*let explosion = this.add.sprite(200, player.y, 'boom');
-        explosion.play('explode');
-        explosion.on('animationcomplete', function(listener){
-            this.gameOver = true;
-       }.bind(this))*/
       }.bind(this));
     this.physics.add.collider(
       this.player,
@@ -287,7 +302,8 @@ export default class Game extends Phaser.Scene {
       this.player,
       this.subgroup,
       function (player,subgroup){
-        subgroup.destroy();
+        subgroup.play('explosion1');
+        //subgroup.destroy();
         this.player.corazon(-1);
       }.bind(this));
     this.physics.add.collider(
@@ -344,7 +360,9 @@ export default class Game extends Phaser.Scene {
       this.subgroup,
       function (bulletgroup,subgroup){
         bulletgroup.destroy();
-        subgroup.destroy();
+        subgroup.play('explosion1');
+        
+        //subgroup.destroy();
         this.player.point(250);
       }.bind(this)); 
     this.physics.add.collider(
@@ -352,7 +370,8 @@ export default class Game extends Phaser.Scene {
       this.Mingroup,
       function (bulletgroup,Mingroup){
         bulletgroup.destroy();
-        Mingroup.destroy();
+        //Mingroup.destroy();
+        Mingroup.play('explosion2');
         this.player.point(25);
       }.bind(this)); 
     this.physics.add.collider(
@@ -363,4 +382,5 @@ export default class Game extends Phaser.Scene {
         Mingroup.destroy();
       }.bind(this)); 
   }
+
 }

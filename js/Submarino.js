@@ -17,6 +17,9 @@ export default class BigFish extends Phaser.GameObjects.Sprite {
       else
         this.imagen = 3;
       this.setFrame(this.imagen*4);
+
+      var key = 'Sub_' + this.imagen;
+      this.play(key, true);
     }
   
     getImagen(){
@@ -26,7 +29,5 @@ export default class BigFish extends Phaser.GameObjects.Sprite {
     preUpdate(t,d) {
       super.preUpdate(t,d);
       this.body.setVelocity(-150, 0);
-      var key = 'Sub_' + this.imagen;
-      this.play(key, true);
     }
   }
