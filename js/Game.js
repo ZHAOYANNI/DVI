@@ -22,14 +22,13 @@ export default class Game extends Phaser.Scene {
     this.load.image('life', 'assets/images/guilife-sheet0.png');
     this.load.image('score', 'assets/images/guiscore-sheet0.png');
     this.load.image('bullet', 'assets/images/guitime-sheet0.png');
-    //this.load.image('pause', 'assets/images/btnpause-sheet0.png');
-    this.load.image('sound', 'assets/images/btnsound-sheet1.png');
     this.load.image('vida', 'assets/images/sharklife-sheet0.png');
     this.load.image('balas', 'assets/images/fireballs-sheet0.png');
     this.load.image('bomba', 'assets/images/superbomb-sheet0.png');
     this.load.image('PezVeneno', 'assets/images/bigfish-sheet2.png');
     this.load.image('pollo', 'assets/images/meat-sheet0.png');
     this.load.spritesheet('pause', 'assets/images/btnpause-sheet0.png', {frameWidth: 141, frameHeight: 147});
+    this.load.spritesheet('sound', 'assets/images/btnsound-sheet1.png', {frameWidth: 141, frameHeight: 147});
     this.load.spritesheet('player', 'assets/images/shark-sheet0.png', {frameWidth: 128,frameHeight: 101});
 
     this.load.spritesheet('bubble', 'assets/images/bubble18px-sheet0.png', {frameWidth: 18, frameHeight: 18});
@@ -61,12 +60,46 @@ export default class Game extends Phaser.Scene {
     this.add.image(100, 100, 'life');
     this.add.image(500, 100, 'score');
     this.add.image(900, 100, 'bullet');
-    this.add.image(1800, 100, 'sound');
-    
+    // add button
     this.pauseButton = this.add.sprite(1600, 100, 'pause').setInteractive();
     this.pauseButton.on('pointerdown', function(){
       this.setFrame(1);
       this.scene.scene.pause('playgame');   
+    });
+
+    this.pauseButton = this.add.sprite(1800, 100, 'sound').setInteractive();
+    this.soundOn = true;
+    this.pauseButton.on('pointerdown', function(){
+      if(this.scene.soundOn == true){
+        this.setFrame(1);
+        this.scene.soundExplosion1.setVolume(0);
+        this.scene.soundExplosion2.setVolume(0);
+        this.scene.soundExplosion3.setVolume(0);
+        this.scene.soundExplosion4.setVolume(0);
+        this.scene.attack.setVolume(0);
+        this.scene.addfireballs.setVolume(0);
+        this.scene.addlife.setVolume(0);
+        this.scene.veneno.setVolume(0);
+        this.scene.bombexplosion.setVolume(0);
+        this.scene.touchfish.setVolume(0);
+        this.scene.touchmeat.setVolume(0);
+        this.scene.soundOn = false;
+      }
+      else{
+        this.setFrame(0);
+        this.scene.soundExplosion1.setVolume(1);
+        this.scene.soundExplosion2.setVolume(1);
+        this.scene.soundExplosion3.setVolume(1);
+        this.scene.soundExplosion4.setVolume(1);
+        this.scene.attack.setVolume(1);
+        this.scene.addfireballs.setVolume(1);
+        this.scene.addlife.setVolume(1);
+        this.scene.veneno.setVolume(1);
+        this.scene.bombexplosion.setVolume(1);
+        this.scene.touchfish.setVolume(1);
+        this.scene.touchmeat.setVolume(1);
+        this.scene.soundOn = true;
+      }
     });
 
     // animaciones de player
@@ -125,6 +158,7 @@ export default class Game extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers('explosion', { start: 14, end: 25 }),
       frameRate: 15
     });
+    
     // Sonido
     const config = {
       mute: false,
