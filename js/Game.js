@@ -63,8 +63,8 @@ export default class Game extends Phaser.Scene {
     // add button
     this.pauseButton = this.add.sprite(1600, 100, 'pause').setInteractive();
     this.pauseButton.on('pointerdown', function(){
-      this.setFrame(1);
-      this.scene.scene.pause('playgame');   
+        this.scene.scene.pause('playgame'); 
+        this.scene.scene.launch('sceneSTOP');
     });
 
     this.pauseButton = this.add.sprite(1800, 100, 'sound').setInteractive();
@@ -158,7 +158,7 @@ export default class Game extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers('explosion', { start: 14, end: 25 }),
       frameRate: 15
     });
-    
+
     // Sonido
     const config = {
       mute: false,
