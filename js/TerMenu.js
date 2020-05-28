@@ -12,8 +12,8 @@ export default class TerMenu extends Phaser.Scene {
 
 	create() {
 		this.add.image(960, 540, 'backg');
-		this.replayButton = this.add.imagen(950, 600, 'replay').setInteractive();
-		this.quitButton = this.add.imagen(950, 1200, 'quit').setInteractive();
+		this.replayButton = this.add.sprite(750, 800, 'replay').setInteractive();
+		this.quitButton = this.add.sprite(1150, 800, 'quit').setInteractive();
 		
 	    this.replayButton.on('pointerdown', function(){
 	    	this.scene.scene.start('playgame');

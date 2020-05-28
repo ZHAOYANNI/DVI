@@ -20,8 +20,8 @@ export default class Menu extends Phaser.Scene {
 	    	this.setFrame(0);
 	    });
 	    this.playButton.on('pointerdown', function(){
-	    	//this.scene.scene.start('playgame');
-	    	this.scene.scene.start('playgame');
+	    	this.scene.scene.stop('menu');
+			this.scene.scene.start('playgame');
 	    });
 	}
 

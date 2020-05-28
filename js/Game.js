@@ -231,12 +231,12 @@ export default class Game extends Phaser.Scene {
   update(time, delta) {  
     this.cont++;
     // Genera pecesitos
-    if(this.cont % 30 == 0){
+    if(this.cont % 35 == 0){
       this.SmallFish = new SmallFish(this, this.game.config.width, 300+Math.random()*700);
       this.smallgroup.add(this.SmallFish);
     }
     // Genera peces grandes
-    if(this.cont % 40 == 0){
+    if(this.cont % 45 == 0){
       var j = Math.random();
       if(j < 0.3){
         this.BigFish = new BigFish(this, this.game.config.width, 300+Math.random()*700);
@@ -338,7 +338,7 @@ export default class Game extends Phaser.Scene {
         this.subgroup.remove(this.subgroup.getChildren()[i], true, true);
       }
 
-      if(this.cont % 100 == 0){
+      if(this.cont % 120 == 0){
         this.rocket = new Rocket(this, this.subgroup.getChildren()[i].x - 20, this.subgroup.getChildren()[i].y, this.subgroup.getChildren()[i].getImagen());
         this.rocketgroup.add(this.rocket);
       }
@@ -349,6 +349,11 @@ export default class Game extends Phaser.Scene {
         this.rocketgroup.remove(this.rocketgroup.getChildren()[i], true, true);
       }
     }  
+
+    if((this.player.getNumlife() <= 0) && (this.player.y) > 975){
+      this.scene.launch('termenu');
+      this.scene.stop('playgame');
+    }
     
     // Collider de player
     this.physics.add.collider(
