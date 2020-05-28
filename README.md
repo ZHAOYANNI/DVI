@@ -1,7 +1,6 @@
 # DVI
 Desarrollo de Videojuegos mediante Tecnologías Web
-* [Underwater Crisis](https://luojuee.github.io/DVIproyecto/)
-npx http-server
+* Game: [Underwater Crisis](https://luojuee.github.io/DVIproyecto/)
 
 ## Autores
 * Zhaoyan Ni [luojuee](https://github.com/luojuee)
