@@ -1,5 +1,6 @@
 # DVI
 Desarrollo de Videojuegos mediante Tecnologías Web
+* [Underwater Crisis](https://luojuee.github.io/DVIproyecto/)
 npx http-server
 
 ## Autores
@@ -7,7 +8,6 @@ npx http-server
 * Yifei Liu [ZHAOYANNI](https://github.com/ZHAOYANNI)
 
 ## Description
-
   Es un juego inspirado en el juego "Feeding".
 
   UNDERWATER CRISIS es un juego en el que los jugadores desempeñan el papel de tiburón.
@@ -21,9 +21,9 @@ npx http-server
 
 * Hito 2
 
-  - [ ] Limite: 15/04/2020
+  - [x] Limite: 15/04/2020
 
 * Hito 3
 ```
-  > Limite: 25/05/2020
+  > Limite: 9/06/2020
 ```
