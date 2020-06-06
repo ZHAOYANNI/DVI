@@ -29,7 +29,7 @@ También aparecerán submarinos y bombas en el océano, son una amenaza para los
 
 |#|images|mechanism|
 |---|---|----|
-|1|![Corazon](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/sharklife-sheet0.png)|vida +1|
+|1|![Corazon](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/sharklife-sheet0.png)|vida +1, el numero de la vida no tienen límite superior|
 |2|![Balas](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/fireballs-sheet0.png)|balas +20|
 |3|![Bomba](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/superbomb-sheet0.png)|despejar los submarinos y las minas|
 |4|![Pez peligro](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/bigfish-sheet2.png)|Comer: vida -1|
