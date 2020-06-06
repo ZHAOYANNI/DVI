@@ -315,7 +315,7 @@ export default class Game extends Phaser.Scene {
     // Actualiza los pecesitos
     var i = 0;
     while(i < 7 && i < this.smallgroup.getLength()){
-      if(this.smallgroup.getChildren()[i].x <= 100){
+      if(this.smallgroup.getChildren()[i].x <= 10){
         this.smallgroup.remove(this.smallgroup.getChildren()[i], true, true);
         i--;
       }else{
@@ -326,7 +326,7 @@ export default class Game extends Phaser.Scene {
     // Actualiza los peces grandes
     i = 0;
     while(i < 2 && i < this.biggroup.getLength()){
-      if(this.biggroup.getChildren()[i].x <= 100){
+      if(this.biggroup.getChildren()[i].x <= 10){
         this.biggroup.remove(this.biggroup.getChildren()[i], true, true);
         i--;
       }else{
@@ -336,7 +336,7 @@ export default class Game extends Phaser.Scene {
     }
     // Actualiza los submarinos
     for (var i = 0; i < this.subgroup.getLength(); i++){
-      if(this.subgroup.getChildren()[i].x <= 100){
+      if(this.subgroup.getChildren()[i].x <= 10){
         this.subgroup.remove(this.subgroup.getChildren()[i], true, true);
       }
 
@@ -347,7 +347,7 @@ export default class Game extends Phaser.Scene {
     }
     // Actualiza los rockets
     for (var i = 0; i < this.rocketgroup.getLength(); i++){
-      if(this.rocketgroup.getChildren()[i].x <= 100){
+      if(this.rocketgroup.getChildren()[i].x <= 10){
         this.rocketgroup.remove(this.rocketgroup.getChildren()[i], true, true);
       }
     }  
