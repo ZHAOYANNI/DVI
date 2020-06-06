@@ -3,8 +3,9 @@ Desarrollo de Videojuegos mediante Tecnologías Web
 * Game: [Underwater Crisis](https://luojuee.github.io/DVIproyecto/)
 
 ## Autores
-* Zhaoyan Ni [luojuee](https://github.com/luojuee)
-* Yifei Liu [ZHAOYANNI](https://github.com/ZHAOYANNI)
+* Zhaoyan Ni [ZHAOYANNI](https://github.com/ZHAOYANNI)
+* Yifei Liu [luojuee](https://github.com/luojuee)
+
 
 ## Description
   Es un juego inspirado en el juego "Feeding".
