@@ -226,7 +226,8 @@ export default class Game extends Phaser.Scene {
       this.player.play('player_normal',true);
       this.attack.play();
     });
-    this.colliderOff == false;
+
+    this.colliderOff = false;
   }
 
   update(time, delta) {  
@@ -359,7 +360,8 @@ export default class Game extends Phaser.Scene {
         this.scene.launch('termenu');
         this.scene.stop('playgame');
     }
-    if( this.colliderOff == false){
+
+    if(this.colliderOff == false){
     // Collider de player
     this.physics.add.collider(
       this.player,
