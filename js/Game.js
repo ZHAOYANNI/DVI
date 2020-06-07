@@ -84,6 +84,7 @@ export default class Game extends Phaser.Scene {
         this.scene.bombexplosion.setVolume(0);
         this.scene.touchfish.setVolume(0);
         this.scene.touchmeat.setVolume(0);
+        this.scene.bgm.setVolume(0);
         this.scene.soundOn = false;
       }
       else{
@@ -99,6 +100,7 @@ export default class Game extends Phaser.Scene {
         this.scene.bombexplosion.setVolume(1);
         this.scene.touchfish.setVolume(1);
         this.scene.touchmeat.setVolume(1);
+        this.scene.bgm.setVolume(1);
         this.scene.soundOn = true;
       }
     });
