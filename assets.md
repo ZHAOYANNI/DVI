@@ -18,4 +18,4 @@
 ![Medias](https://github.com/ZHAOYANNI/DVI/blob/master/slides/%E6%8D%95%E8%8E%B7.PNG)
 
 ## Funte
-![Funte](https://github.com/ZHAOYANNI/DVI/blob/master/slides/%E6%8D%95%E8%8E%B7.PNG)
+![Funte](https://github.com/ZHAOYANNI/DVI/blob/master/slides/funte.PNG)
