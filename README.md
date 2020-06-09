@@ -24,6 +24,5 @@ Desarrollo de Videojuegos mediante Tecnologías Web
   - [x] Limite: 15/04/2020
 
 * Hito 3
-```
-  > Limite: 9/06/2020
-```
+
+  - [x] Limite: 10/06/2020
