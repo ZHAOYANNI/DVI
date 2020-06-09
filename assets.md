@@ -1,4 +1,4 @@
-##Images
+## Images
 |#|Images|Descripción|
 |---|---|----|
 |1|![Player](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/shark-sheet0.png)|Jugador|
@@ -14,5 +14,5 @@
 |11|![Suspender](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/btnpause-sheet0.png)|pausa o comienza el juego|
 |12|![Sonido](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/btnsound-sheet1.png)|Sonido encendido o apagado|
 
-##Sonidos
-
+## Medias
+![Medias](https://github.com/ZHAOYANNI/DVI/blob/master/slides/%E6%8D%95%E8%8E%B7.PNG)
