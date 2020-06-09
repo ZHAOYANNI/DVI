@@ -1,3 +1,4 @@
+##Images
 |#|Images|Descripción|
 |---|---|----|
 |1|![Player](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/shark-sheet0.png)|Jugador|
@@ -12,3 +13,6 @@
 |10|![Pez peligro](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/bigfish-sheet2.png)|Pez peligro|
 |11|![Suspender](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/btnpause-sheet0.png)|pausa o comienza el juego|
 |12|![Sonido](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/btnsound-sheet1.png)|Sonido encendido o apagado|
+
+##Sonidos
+
