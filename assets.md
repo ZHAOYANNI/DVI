@@ -1,5 +1,5 @@
-## Images
-|#|Images|Descripción|
+## Imagenes
+|#|Imagenes|Descripción|
 |---|---|----|
 |1|![Player](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/shark-sheet0.png)|Jugador|
 |2|![Mina](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/bomb-sheet0.png)|Minas|
@@ -17,5 +17,5 @@
 ## Medias
 ![Medias](https://github.com/ZHAOYANNI/DVI/blob/master/slides/%E6%8D%95%E8%8E%B7.PNG)
 
-## Funte
+## Fuente
 ![Funte](https://github.com/ZHAOYANNI/DVI/blob/master/slides/funte.PNG)
