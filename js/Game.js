@@ -364,6 +364,7 @@ export default class Game extends Phaser.Scene {
       this.physics.world.colliders.destroy();
     }
     if((this.player.getNumlife() <= 0)&&(this.player.y > 770)){
+        this.bgm.destroy();
         this.scene.launch('termenu');
         this.scene.stop('playgame');
     }
