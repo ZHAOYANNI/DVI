@@ -12,4 +12,4 @@
   Tenemos dos tipos de peces: peces grandes y peces pequeños.El jugador consigue más puntos al comer los peces grandes que come los peces pequeños. Por supuesto, el jugador tiene enemigos:las minas, los cubos tóxicos y los submarinos. Con el archivo Rocket.js conseguimos que los submarinos puedan disparar balas. El jugador puede destruir a sus enemigos disparando balas, esta funcionalidad está implementada en el archivo SharkB.js.  
    Además de los peces, el jugador puede comer accesorios que pueden sumar el número de balas del jugador, matar todos los peces y los enemigos, sumar puntos del juego, dar una vida más al jugador o quitar una vida del jugador. Estas funciones están implementadas en los archivos balas.js, bomba.js, meat.js, vida.js y Pezveneno.js respectivamente.  
   Para poder pausar el juego, hemos utilizado el archivo scenestop.js.  
-  Tenenmos un archivo especial: "bubbe.js" que sirve para generar las burbujas del fondo.
+  Tenemos un archivo especial: "bubbe.js" que sirve para generar las burbujas del fondo.
