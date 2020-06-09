@@ -40,4 +40,3 @@ También aparecerán submarinos y bombas en el océano, son una amenaza para los
 |---|---|----|
 |1|![Suspender](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/btnpause-sheet0.png)|pausa o comienza el juego|
 |2|![Sonido](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/btnsound-sheet1.png)|sonido encendido o apagado|
-|3|![Jugar](https://github.com/ZHAOYANNI/DVI/blob/master/assets/images/btnplay-sheet0.png)|Iniciar juego|
